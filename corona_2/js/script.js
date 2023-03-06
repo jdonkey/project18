@@ -39,8 +39,14 @@ const flafyOff = (a, b) => {
 };
 console.log(flafyOff(4, 6));
 
-let usdCurr = 28;
-function convert(amount, curr) {
-	console.log(curr * amount);
+
+const euroCur = 78;
+const discount = 0.9;
+function convert(curr, sum) {
+	return curr * sum;
 }
-convert(300, usdCurr);
+function promotion(result) {
+	console.log(result * discount);
+}
+const conv = convert(euroCur, 1000);
+promotion(conv);
