@@ -31,4 +31,16 @@ if (personalMovieDB.count < 10) {
 } else {
 	console.log('ERROR!');
 }
-console.log(personalMovieDB);		
+console.log(personalMovieDB);
+
+const flafyOff = (a, b) => {
+	console.log('2')
+	return a + b;
+};
+console.log(flafyOff(4, 6));
+
+let usdCurr = 28;
+function convert(amount, curr) {
+	console.log(curr * amount);
+}
+convert(300, usdCurr);
