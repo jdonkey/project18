@@ -1,27 +1,4 @@
 'use strict';
-const arr = [1, 2, 4];
-console.log(arr.length);
-const str = 'test';
-// console.log(str[2]);
-console.log(str.toUpperCase());
-console.log(str);
-
-const fruit = 'Some fruit';
-console.log(fruit.indexOf('S'))
-const logg = 'Hello world';
-console.log(logg.slice(3, 11));
-console.log(logg.substring(3, 11));
-console.log(logg.substr(3, 8));
-
-const num = 12.2;
-console.log(Math.round(num));
-
-const test = '12.2px';
-// console.log(parseInt(test));
-console.log(parseFloat(test));
-
-
-
 let numberOfFilms;
 function start() {
 	numberOfFilms = +prompt('Сколько фильмов вы уже посотрели?', '');
@@ -40,7 +17,7 @@ const personalMovieDB = {
 
 function rememberMyFilms() {
 	for (let i = 0; i < 2; i++) {
-		const a = prompt('Один из последних просмотренных фильмов?', ''),
+		const a = prompt('Один из последних просмотренных фильмов?', '').trim(),
 			b = prompt('На сколько оцените его?', '');
 
 		if (a != null && b != null && a != '' && b != '' && a.length < 50) {
@@ -52,7 +29,7 @@ function rememberMyFilms() {
 		}
 	}
 }
-// rememberMyFilms();
+rememberMyFilms();
 function detectPersonalLevel() {
 	if (personalMovieDB.count < 10) {
 		console.log('Вы посмотрели слишком мало!');
@@ -64,7 +41,7 @@ function detectPersonalLevel() {
 		console.log('ERROR!');
 	}
 }
-// detectPersonalLevel();
+detectPersonalLevel();
 
 function showMyDB(hidden) {
 	if (!hidden) {
