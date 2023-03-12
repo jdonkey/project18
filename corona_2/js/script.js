@@ -1,28 +1,17 @@
 'use strict';
 
-// To String
+function createCounter() {
+	let counter = 0;
+	const myFunction = function () {
+		counter = counter + 1;
+		return counter;
+	}
+	return myFunction;
+}
 
-// 1)
-console.log(typeof (String(null)));
-console.log(typeof (String(4)));
+const increment = createCounter();
+const c1 = increment();
+const c2 = increment();
+const c3 = increment();
 
-// 2)
-console.log(typeof (null + ''));
-
-const num = 5;
-console.log('https://vk.com/catalog/' + num);
-const fontSize = 34 + 'px';
-// to number
-console.log(typeof (Number('4')));
-console.log(typeof (+'5'));
-console.log(typeof (parseInt('16', 10)));
-let answ = +prompt('Hello', '');
-
-// to boolean
-0, '', null, undefined, NaN;// false
-
-console.log(typeof (Boolean('5')));
-console.log(typeof (!!'5'));//boolean
-
-
-
+console.log(c1, c2, c3);
