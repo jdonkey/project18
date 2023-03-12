@@ -1,68 +1,28 @@
 'use strict';
 
+// To String
 
+// 1)
+console.log(typeof (String(null)));
+console.log(typeof (String(4)));
 
+// 2)
+console.log(typeof (null + ''));
 
-const personalMovieDB = {
-	count: 0,
-	movies: {},
-	actors: {},
-	genres: [],
-	privat: false,
-	start: function () {
-		personalMovieDB.count = +prompt('Сколько фильмов вы уже посотрели?', '');
-		while (personalMovieDB.count == '' || personalMovieDB.count == null || isNaN(personalMovieDB.count)) {
-			personalMovieDB.count = +prompt('Сколько фильмов вы уже посотрели?', '');
-		}
-	},
-	rememberMyFilms: function () {
-		for (let i = 0; i < 2; i++) {
-			const a = prompt('Один из последних просмотренных фильмов?', ''),
-				b = prompt('На сколько оцените его?', '');
+const num = 5;
+console.log('https://vk.com/catalog/' + num);
+const fontSize = 34 + 'px';
+// to number
+console.log(typeof (Number('4')));
+console.log(typeof (+'5'));
+console.log(typeof (parseInt('16', 10)));
+let answ = +prompt('Hello', '');
 
-			if (a != null && b != null && a != '' && b != '' && a.length < 50) {
-				personalMovieDB.movies[a] = b;
-				console.log('done');
-			} else {
-				console.log('error');
-				i--;
-			}
-		}
-	},
-	detectPersonalLevel: function () {
-		if (personalMovieDB.count < 10) {
-			console.log('Вы посмотрели слишком мало!');
-		} else if (personalMovieDB.count >= 10 && personalMovieDB.count <= 30) {
-			console.log('Вы посмотрели норм!');
-		} else if (personalMovieDB.count > 30) {
-			console.log('Вы киноманьяк!');
-		} else {
-			console.log('ERROR!');
-		}
-	},
-	showMyDB: function (hidden) {
-		if (!hidden) {
-			console.log(personalMovieDB);
-		}
-	},
-	toggleVisibleMyDB: function () {
-		if (personalMovieDB.privat) {
-			personalMovieDB.privat = false;
-		} else {
-			personalMovieDB.privat = true;
-		}
-	},
-	writeYourGenres: function () {
-		for (let i = 1; i <= 3; i++) {
-			const genre = prompt(`Ваш любимый жанр под номером ${i}`);
-			personalMovieDB.genres[i - 1] = genre;
-		}
-	}
-};
+// to boolean
+0, '', null, undefined, NaN;// false
 
-
-
-
+console.log(typeof (Boolean('5')));
+console.log(typeof (!!'5'));//boolean
 
 
 
