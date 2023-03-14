@@ -1,17 +1,40 @@
-'use strict';
+const btn = document.querySelectorAll('button'),
+	overlay = document.querySelector('.overlay');
 
-function createCounter() {
-	let counter = 0;
-	const myFunction = function () {
-		counter = counter + 1;
-		return counter;
-	}
-	return myFunction;
-}
+const deleteElement = (e) => {
+	console.log(e.target);
+	console.log(e.type);
+};
 
-const increment = createCounter();
-const c1 = increment();
-const c2 = increment();
-const c3 = increment();
+btn.addEventListener('click', () => {
+	alert('Click');
+});
 
-console.log(c1, c2, c3);
+btn.addEventListener('click', () => {
+	alert('Second click');
+});
+
+// btn.addEventListener('mouseenter', (e) => {
+// 	e.target.remove();
+// 	// console.log('Hover');
+// })
+
+// let i = 0;
+//  const deleteElement = (e) => {
+// 	console.log(e.target);
+// 	i++;
+// 	if (i == 1) {
+// 		btn.removeEventListener('click', deleteElement);
+// 	}
+//  };
+//   btn.addEventListener('click', deleteElement);
+//  overlay.addEventListener('click', deleteElement);
+btn.forEach(item => {
+	item.addEventListener('click', deleteElement, { once: true });
+});
+
+const link = document.querySelector('a');
+link.addEventListener('click', (event) => {
+	event.preventDefault();//отменить стандартное поведение браузера
+	console.log(event.target);
+});
