@@ -1,40 +1,78 @@
-const btn = document.querySelectorAll('button'),
-	overlay = document.querySelector('.overlay');
 
-const deleteElement = (e) => {
-	console.log(e.target);
-	console.log(e.type);
+let students = {
+	js: [{
+		name: 'John',
+		progress: 100
+	}, {
+		name: 'Ivan',
+		progress: 60
+	}],
+
+	html: {
+		basic: [{
+			name: 'Peter',
+			progress: 20
+		}, {
+			name: 'Ann',
+			progress: 18
+		}],
+		pro: [{
+			name: 'Sam',
+			progress: 10
+		}],
+		semi: {
+			students: [{
+				name: 'Test',
+				progress: 100
+			}]
+		}
+	}
 };
+//с помощью цикла
+function getTotalProgressByIteration(data) {
+	let total = 0;
+	let students = 0;
 
-btn.addEventListener('click', () => {
-	alert('Click');
-});
+	for (let course of Object.values(data)) {
+		if (Array.isArray(course)) {
+			students += course.length;
+			for (let i = 0; i < course.length; i++) {
+				total += course[i].progress;
+			}
+		} else {
+			for (let subCourse of Object.values(course)) {
+				students += subCourse.length;
 
-btn.addEventListener('click', () => {
-	alert('Second click');
-});
+				for (let i = 0; i < subCourse.length; i++) {
+					total += subCourse[i].progress;
+				}
+			}
+		}
+	}
 
-// btn.addEventListener('mouseenter', (e) => {
-// 	e.target.remove();
-// 	// console.log('Hover');
-// })
+	return total / students;
+}
+// console.log(getTotalProgressByIteration(students));
 
-// let i = 0;
-//  const deleteElement = (e) => {
-// 	console.log(e.target);
-// 	i++;
-// 	if (i == 1) {
-// 		btn.removeEventListener('click', deleteElement);
-// 	}
-//  };
-//   btn.addEventListener('click', deleteElement);
-//  overlay.addEventListener('click', deleteElement);
-btn.forEach(item => {
-	item.addEventListener('click', deleteElement, { once: true });
-});
+// с помощью рекурсии
 
-const link = document.querySelector('a');
-link.addEventListener('click', (event) => {
-	event.preventDefault();//отменить стандартное поведение браузера
-	console.log(event.target);
-});
+function getTotalProgressByRecursion(data) {
+	if (Array.isArray(data)) {
+		let total = 0;
+		for (let i = 0; i < data.length; i++) {
+			total += data[i].progress;
+		}
+		return [total, data.length];
+	} else {
+		let total = [0, 0];
+		for (let subdata of Object.values(data)) {
+			const subDataArr = getTotalProgressByRecursion(subdata);
+			total[0] += subDataArr[0];
+			total[1] += subDataArr[1];
+		}
+		return total;
+	}
+}
+
+const result = getTotalProgressByRecursion(students);
+console.log(result[0] / result[1]);
