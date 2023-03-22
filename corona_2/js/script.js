@@ -23,8 +23,41 @@ console.log(map);
 // console.log(map.has(shops[0]));
 
 // console.log(map.keys());
+
+//первый метод
 const goods = [];
 for (let shop of map.keys()) {
 	goods.push(Object.keys(shop)[0])
 }
 console.log(goods);
+
+//второй метод
+for (let price of map.values()) {
+	console.log(price);
+}
+
+//третий метод
+
+for (let [shop, price] of map.entries()) {
+	console.log(price, shop);
+}
+
+//четвертый метод
+map.forEach((value, key, map) => {
+	console.log(key, value);
+});
+
+//перевод объекта в карту map
+const user = {
+	name: 'Alex',
+	surname: 'Smith',
+	birthday: '20/04/1993',
+	showMyPublicData: function () {
+		console.log(`${this.name} ${this.surname}`);
+	}
+}
+const userMap = new Map(Object.entries(user));
+console.log(userMap);
+//перевод карты в объект
+const newUserObj = Object.fromEntries(userMap);
+console.log(newUserObj);
