@@ -1,78 +1,30 @@
+'use strict';
 
-let students = {
-	js: [{
-		name: 'John',
-		progress: 100
-	}, {
-		name: 'Ivan',
-		progress: 60
-	}],
+const shops = [
+	{ rice: 500 },
+	{ oil: 200 },
+	{ bread: 50 }
+];
 
-	html: {
-		basic: [{
-			name: 'Peter',
-			progress: 20
-		}, {
-			name: 'Ann',
-			progress: 18
-		}],
-		pro: [{
-			name: 'Sam',
-			progress: 10
-		}],
-		semi: {
-			students: [{
-				name: 'Test',
-				progress: 100
-			}]
-		}
-	}
-};
-//с помощью цикла
-function getTotalProgressByIteration(data) {
-	let total = 0;
-	let students = 0;
+const map = new Map([
+	[{ paper: 400 }, 8000]
+]);
+map.set(shops[0], 5000);
+map.set(shops[1], 15000);
+map.set(shops[2], 3000);
+console.log(map);
+//то же самое с помощью цикла
+const budget = [5000, 15000, 3000];
+shops.forEach((shop, i) => {
+	map.set(shop, budget[i]);
+})
+console.log(map);
+// console.log(map.get(shops[0]));
+// console.log(map.has(shops[0]));
 
-	for (let course of Object.values(data)) {
-		if (Array.isArray(course)) {
-			students += course.length;
-			for (let i = 0; i < course.length; i++) {
-				total += course[i].progress;
-			}
-		} else {
-			for (let subCourse of Object.values(course)) {
-				students += subCourse.length;
-
-				for (let i = 0; i < subCourse.length; i++) {
-					total += subCourse[i].progress;
-				}
-			}
-		}
-	}
-
-	return total / students;
+// console.log(map.keys());
+const goods = [];
+for (let shop of map.keys()) {
+	goods.push(Object.keys(shop)[0])
 }
-// console.log(getTotalProgressByIteration(students));
-
-// с помощью рекурсии
-
-function getTotalProgressByRecursion(data) {
-	if (Array.isArray(data)) {
-		let total = 0;
-		for (let i = 0; i < data.length; i++) {
-			total += data[i].progress;
-		}
-		return [total, data.length];
-	} else {
-		let total = [0, 0];
-		for (let subdata of Object.values(data)) {
-			const subDataArr = getTotalProgressByRecursion(subdata);
-			total[0] += subDataArr[0];
-			total[1] += subDataArr[1];
-		}
-		return total;
-	}
-}
-
-const result = getTotalProgressByRecursion(students);
-console.log(result[0] / result[1]);
+console.log(goods);
