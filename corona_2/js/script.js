@@ -1,49 +1,35 @@
 'use strict';
-
-const btns = document.querySelectorAll('button');
-wrapper = document.querySelector('.btn-block');
-
-// console.log(btns[0].classList.length);
-// console.log(btns[0].classList.item(0));
-console.log(btns[1].classList.add('red'));
-// console.log(btns[0].classList.remove('blue'));
-// console.log(btns[3].classList.toggle('blue'));
-// if (btns[1].classList.contains('red')) {
-// 	console.log('red');
-// }
-
-// btns[0].addEventListener('click', () => {
-// 	if (!btns[1].classList.contains('red')) {
-// 		btns[1].classList.add('red');
-// 	} else {
-// 		btns[1].classList.remove('red');
-// 	}
-// })
-
-btns[0].addEventListener('click', () => {
-	btns[1].classList.toggle('red');
-});
-
-//делегирование событий
-wrapper.addEventListener('click', (event) => {
-	if (event.target && event.target.tagName == 'BUTTON') {
-		console.log('Hello');
+window.addEventListener('DOMContentLoaded', () => {
+	const tabs = document.querySelectorAll('.tabheader__item'),
+		tabscontent = document.querySelectorAll('.tabcontent'),
+		tabsParent = document.querySelector('.tabheader__items');
+	function hideTabcontent() {
+		tabscontent.forEach(item => {
+			item.classList.add('hide');
+			item.classList.remove('show', 'fade');
+		});
+		tabs.forEach(item => {
+			item.classList.remove('tabheader__item_active');
+		});
 	}
-});
 
-wrapper.addEventListener('click', (event) => {
-	if (event.target && event.target.matches('button.red')) {
-		console.log('Hello');
+	function showTabContent(i = 0) {
+		tabscontent[i].classList.add('show', 'fade');
+		tabscontent[i].classList.remove('hide');
+		tabs.classList.add('tabheader__item_active');
 	}
-});
+	hideTabcontent();
+	showTabContent();
 
-// ошибка с делегированием
-btns.forEach(btn => {
-	btn.addEventListener('click', () => {
-		console.log('Hello');
+	tabsParent.addEventListener('click', (event) => {
+		const target = event.target;
+		if (target && target.classList.contains('tabheader__item')) {
+			tabs.forEach((item, i) => {
+				if (target == item) {
+					hideTabcontent();
+					showTabContent(i);
+				}
+			});
+		}
 	});
 });
-const btn = document.createElement('button');
-btn.classList.add('red');
-wrapper.apend(btn);
-
