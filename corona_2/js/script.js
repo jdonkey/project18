@@ -1,35 +1,42 @@
 'use strict';
-window.addEventListener('DOMContentLoaded', () => {
-	const tabs = document.querySelectorAll('.tabheader__item'),
-		tabscontent = document.querySelectorAll('.tabcontent'),
-		tabsParent = document.querySelector('.tabheader__items');
-	function hideTabcontent() {
-		tabscontent.forEach(item => {
-			item.classList.add('hide');
-			item.classList.remove('show', 'fade');
-		});
-		tabs.forEach(item => {
-			item.classList.remove('tabheader__item_active');
-		});
-	}
 
-	function showTabContent(i = 0) {
-		tabscontent[i].classList.add('show', 'fade');
-		tabscontent[i].classList.remove('hide');
-		tabs.classList.add('tabheader__item_active');
-	}
-	hideTabcontent();
-	showTabContent();
+const btn = document.querySelector('.btn');
+let timerId;
+let i = 0;
+//старый метод анимации
+function myAnimation() {
+	const elem = document.querySelector('.box');
+	let pos = 0;
 
-	tabsParent.addEventListener('click', (event) => {
-		const target = event.target;
-		if (target && target.classList.contains('tabheader__item')) {
-			tabs.forEach((item, i) => {
-				if (target == item) {
-					hideTabcontent();
-					showTabContent(i);
-				}
-			});
+	const id = setInterval(frame, 10);
+	function frame() {
+		if (pos == 300) {
+			clearInterval(id);
+		} else {
+			pos++;
+			elem.style.top = pos + 'px';
+			elem.style.left = pos + 'px'
 		}
-	});
-});
+	}
+}
+btn.addEventListener('click', myAnimation);
+
+// btn.addEventListener('click', () => {
+// 	// const timerId = setTimeout( logger, 2000);
+// 	timerId = setInterval( logger, 500);
+// });
+
+
+//  function logger () {
+// 	if (i === 3) {
+// 		clearInterval(timerId);
+// 	}
+// 	console.log('text');
+// 	i++;
+//  }
+
+ //правильный метод, ждет пока все выполнится
+//  let id = setTimeout(function log() {
+// 	console.log('Hello');
+// 	id = setTimeout(log, 500);
+//  }, 500);
